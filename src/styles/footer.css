@@ -1,0 +1,12 @@
+.item-height {
+  min-height: 25vh;
+}
+
+.ad:hover {
+  background-color: #41b5e8;
+  opacity: 0.5;
+}
+
+.bg-footer {
+  background-color: #313944;
+}

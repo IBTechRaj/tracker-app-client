@@ -1,0 +1,41 @@
+body {
+  background-color: #f3f4f6;
+  margin: 0;
+  padding: 0;
+  padding-top: 50px;
+  font-family:
+    "HelveticaNeue-CondensedBold",
+    "HelveticaNeueBoldCondensed",
+    "HelveticaNeue-Bold-Condensed",
+    "Helvetica Neue Bold Condensed",
+    "HelveticaNeueBold",
+    "HelveticaNeue-Bold",
+    "Helvetica Neue Bold",
+    "HelveticaNeue",
+    "Helvetica Neue",
+    "TeXGyreHerosCnBold",
+    "Helvetica",
+    "Tahoma",
+    "Geneva",
+    "Arial Narrow",
+    "Arial",
+    sans-serif;
+  font-weight: 600;
+  font-stretch: condensed;
+}
+
+.header-bg {
+  background-color: #41b5e8;
+}
+
+.header2-bg {
+  background-color: #fdfdfd;
+}
+
+.button-bg {
+  background-color: #313944;
+}
+
+.button-next {
+  background-color: #97e494;
+}

@@ -1,0 +1,27 @@
+/* .item-height {
+  height: 100vh;
+} */
+
+.item-height {
+  min-height: 100vh;
+}
+
+/* .container {
+  min-height: 0px !important;
+} */
+
+.body-bg {
+  background-color: #f3f4f6;
+}
+
+.home-height {
+  min-height: 30vh;
+}
+
+.track-height {
+  min-height: 65vh;
+}
+
+.progress-height {
+  min-height: 65vh;
+}
