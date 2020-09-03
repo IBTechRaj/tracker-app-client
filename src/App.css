@@ -4,10 +4,14 @@ body {
   min-height: 100%;
 } */
 
+/*
 html,
 body,
 #app,
-#app > div {
-  min-height: 50vh;
-  background-color: aqua;
-}
+#app > div { */
+
+/* height: 100vh; */
+
+/* background-color: aqua; */
+
+/* } */

@@ -2,9 +2,9 @@
   height: 100vh;
 } */
 
-.item-height {
+/* .item-height {
   min-height: 100vh;
-}
+} */
 
 /* .container {
   min-height: 0px !important;
@@ -15,7 +15,7 @@
 }
 
 .home-height {
-  min-height: 30vh;
+  min-height: 65vh;
 }
 
 .track-height {

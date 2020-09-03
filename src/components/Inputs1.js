@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import '../styles/style.css';
 
 class Inputs1 extends Component {
@@ -51,14 +52,23 @@ class Inputs1 extends Component {
     // console.log('o', curriculum);
     axios.post('http://localhost:3001/curriculums', {
       curriculum,
+    })
+    .then(response => {
+    if (response.status === 201){
+      console.log( "Data added" );
+     this.setState( {
+        hoursDone: '',
+      hoursTarget: '',
+      modulesDone: '',
+       modulesTarget: '',
+     } )
+      
+    }
+      
+    })
+    .catch(error => {
+      console.log(error);
     });
-    // .then(response => {
-    //   // console.log(response);
-    //   this.setState({ curriculum });
-    // })
-    // .catch(error => {
-    //   console.log(error);
-    // });
   };
 
   redirect = () => {
@@ -81,7 +91,7 @@ class Inputs1 extends Component {
       // <div className="container-fluid  bg-light h-100 text-left text-dark w-100">
       <div className="container-fluid  body-bg  text-dark text-left font-weight-bold  mb-0 px-0">
         <div className="w-100 text-center body-header text-dark px-0 py-1">
-          <h1>Technial Curriculum</h1>
+          <h1>Technial Curriculum (1/3)</h1>
         </div>
         {/* <br /> */}
 
@@ -151,7 +161,7 @@ class Inputs1 extends Component {
           </div> */}
         </form>
         {/* <div>{this.state.errors ? this.handleErrors() : null}</div> */}
-        <div className="row">
+        <div className="row ">
           {/* <div className="col-sm-12"> */}
           <div
             className="col-sm py-3   text-muted item-height"
@@ -189,8 +199,7 @@ class Inputs1 extends Component {
 }
 
 Inputs1.propTypes = {
-  handleLogin: PropTypes.func.isRequired,
-  history: PropTypes.object,
+  history: ReactRouterPropTypes.history.isRequired,
   loggedInStatus: PropTypes.bool,
   id: PropTypes.number,
 };

@@ -4,6 +4,7 @@ import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import '../styles/home.css';
 
 const Home = props => {
@@ -17,7 +18,7 @@ const Home = props => {
     // .catch(error => console.log(error));
   };
   return (
-    <div className="container-fluid  header-bg text-white font-weight-bold h-100 mb-0 home-height">
+    <div className="container-fluid  header-bg text-white font-weight-bold  mb-0 home-height">
       <br></br>
       <div className=" text-white">
         {props.loggedInStatus ? (
@@ -61,7 +62,7 @@ const Home = props => {
 
 Home.propTypes = {
   handleLogout: PropTypes.func.isRequired,
-  history: PropTypes.string.isRequired,
+  history: ReactRouterPropTypes.history.isRequired,
   push: PropTypes.func,
   loggedInStatus: PropTypes.bool,
 };

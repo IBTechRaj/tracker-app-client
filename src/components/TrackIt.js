@@ -59,9 +59,9 @@ class TrackIt extends Component {
           {myCurriculums.map(myCurriculum => (
             <div className="curriculum-list" key={myCurriculum.id}>
               <p>
-                {myCurriculum.name} {myCurriculum.entry_date.substring(1, 10)}{' '}
-                Hours : {myCurriculum.hours_done} Modules :{' '}
-                {myCurriculum.modules_done}
+                {myCurriculum.name.substring(0, 22)} {myCurriculum.entry_date.substring(0, 10)}{' '}
+                [ Hours : {myCurriculum.hours_done}{' '} ]  [Modules :{' '}
+                {myCurriculum.modules_done}]
               </p>
             </div>
           ))}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import { Link } from 'react-router-dom';
 
 class Inputs2 extends Component {
@@ -51,14 +52,23 @@ class Inputs2 extends Component {
     axios
       .post('http://localhost:3001/curriculums', {
         curriculum,
-      });
-    // .then(response => {
-    //   // console.log(response);
-    //   this.setState({ curriculum });
-    // });
-    // .catch(error => {
-    //   // console.log(error);
-    // });
+      })
+    .then(response => {
+    if (response.status === 201){
+      console.log( "Data added" );
+     this.setState( {
+        hoursDone: '',
+      hoursTarget: '',
+      modulesDone: '',
+       modulesTarget: '',
+     } )
+      
+    }
+      
+    })
+    .catch(error => {
+      // console.log(error);
+    });
   };
 
   // redirect = () => {
@@ -81,7 +91,7 @@ class Inputs2 extends Component {
       // <div className="container-fluid  bg-light h-100 text-left text-dark w-100">
       <div className="container-fluid  body-bg  text-dark text-left font-weight-bold  mb-0 px-0">
         <div className="w-100 text-center body-header text-dark px-0 py-1">
-          <h1>Professional Curriculum</h1>
+          <h1>Professional Curriculum (2/3)</h1>
         </div>
         {/* <br /> */}
 
@@ -196,6 +206,7 @@ class Inputs2 extends Component {
 // };
 
 Inputs2.propTypes = {
+  history: ReactRouterPropTypes.history.isRequired,
   id: PropTypes.number,
   username: PropTypes.string,
 };

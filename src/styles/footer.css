@@ -1,5 +1,6 @@
-.item-height {
-  min-height: 25vh;
+
+.footer-height {
+  min-height: 17vh;
 }
 
 .ad:hover {
@@ -9,4 +10,8 @@
 
 .bg-footer {
   background-color: #313944;
+}
+
+.get-hover:hover {
+  background-color: #41b5e8 ;
 }
