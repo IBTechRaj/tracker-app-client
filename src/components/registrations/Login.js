@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -29,27 +29,25 @@ class Login extends Component {
     event.preventDefault();
     const { username, email, password } = this.state;
 
-    const user = {
-      username,
-      email,
-      password,
+    const userInfo = {
+      // username,
+      auth: {
+        email,
+        password,
+      }
     };
-    // console.log(user);
-    axios
-      .post('http://localhost:3001/login', { user }, { withCredentials: true })
-      .then(response => {
-        // console.log("res", response.data.logged_in);
-        if (response.data.logged_in) {
-          this.props.handleLogin(response.data);
-          // console.log("Login-", response.data);
-          this.redirect(response.data);
-        } else {
-          this.setState({
-            errors: response.data.errors,
-          });
-        }
-      });
-    // .catch(error => console.log('api L errors:', error));
+    console.log(userInfo);
+    fetch( `http://localhost:3001/auth/signin`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify( userInfo )
+    } )
+      .then( res => console.log(res.json()) )
+  
+    
   };
 
   redirect = data => {

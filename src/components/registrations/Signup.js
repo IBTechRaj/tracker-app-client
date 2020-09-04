@@ -27,26 +27,26 @@ class Signup extends Component {
     const {
       username, email, password, passwordConfirmation,
     } = this.state;
-    const user = {
+    const userInfo = {
       username,
       email,
       password,
       passwordConfirmation,
     };
-    axios
-      .post('http://localhost:3001/users', { user }, { withCredentials: true })
-      .then(response => {
-        if (response.data.status === 'created') {
-          this.props.handleLogin(response.data);
-          this.redirect();
-        } else {
-          this.setState({
-            errors: response.data.errors,
-          });
-        }
-      });
-    // .catch(error => console.log('api errors:', error));
+    console.log(userInfo);
+    fetch( `http://localhost:3001/auth/signup`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify( userInfo )
+    } )
+      .then( res => console.log(res.json()) )
+  
+    
   };
+    
 
   redirect = () => {
     this.props.history.push('/Inputs1');
