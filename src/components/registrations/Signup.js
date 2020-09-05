@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
+import { connect } from 'react-redux'
+import  { signUp } from '../../actions/userActions'
 import PropTypes from 'prop-types';
 import '../../styles/style.css';
 
@@ -10,8 +12,7 @@ class Signup extends Component {
       username: '',
       email: '',
       password: '',
-      passwordConfirmation: '',
-      errors: '',
+      password_confirmation: '',
     };
   }
 
@@ -24,47 +25,52 @@ class Signup extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const {
-      username, email, password, passwordConfirmation,
-    } = this.state;
-    const userInfo = {
-      username,
-      email,
-      password,
-      passwordConfirmation,
-    };
-    console.log(userInfo);
-    fetch( `http://localhost:3001/auth/signup`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify( userInfo )
-    } )
-      .then( res => console.log(res.json()) )
-  
-    
-  };
-    
+    this.props.signUp( this.state )
+    if ( this.props.loggedIn ) {
+      this.redirect()
+    }
+    //   const {
+    //     username, email, password, passwordConfirmation,
+    //   } = this.state;
+    //   const userInfo = {
+    //     username,
+    //     email,
+    //     password,
+    //     passwordConfirmation,
+    //   };
+    //   console.log(userInfo);
+    //   fetch( `http://localhost:3001/auth/signup`, {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       "Accept": "application/json"
+    //     },
+    //     body: JSON.stringify( userInfo )
+    //   } )
+    //     .then( res => console.log(res.json()) )
+                          
+                            
+    // };
+                            
+  }
 
   redirect = () => {
     this.props.history.push('/Inputs1');
   };
 
-  handleErrors = () => (
-    <div>
-      <ul>
-        {this.state.errors.map(error => (
-          <li key={error}>{error}</li>
-        ))}
-      </ul>
-    </div>
-  );
+                          // handleErrors = () => (
+                          //   <div>
+                          //     <ul>
+                          //       {this.state.errors.map(error => (
+                          //         <li key={error}>{error}</li>
+                          //       ))}
+                          //     </ul>
+                          //   </div>
+                          // );
 
   render() {
     const {
-      username, email, password, passwordConfirmation,
+      username, email, password, password_confirmation,
     } = this.state;
     return (
       <div className="container-fluid text-dark bg-light h-100">
@@ -105,8 +111,8 @@ class Signup extends Component {
               className="form-control"
               placeholder="password confirmation"
               type="password"
-              name="passwordConfirmation"
-              value={passwordConfirmation}
+              name="password_confirmation"
+              value={password_confirmation}
               onChange={this.handleChange}
             />
           </label>
@@ -122,8 +128,20 @@ class Signup extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    loggedIn: state.userReducer
+  }
+}
+const mapDispatchToProps = ( dispatch ) => {
+  return {
+  signUp: (userInfo) => dispatch(signUp(userInfo))
+  }
+}
+
 Signup.propTypes = {
   handleLogin: PropTypes.func.isRequired,
   history: PropTypes.string,
 };
-export default Signup;
+
+export default connect(mapStateToProps, mapDispatchToProps) (Signup);

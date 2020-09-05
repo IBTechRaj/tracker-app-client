@@ -29,7 +29,7 @@ class Progress extends React.Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:3001/curriculums', { withCredentials: true })
+      .get('http://localhost:3001/curriculums')
       .then(({ data }) => {
         let th = 0;
         let tm = 0;

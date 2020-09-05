@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux'
+// import {autoLogin} from './actions/userActions'
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Home from './components/Home';
@@ -18,35 +19,47 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoggedIn: false,
+      loggedIn: true,
       user: {},
     };
   }
 
-  componentDidMount() {
-    // this.loginStatus();
-  }
-
-  
-
-  handleLogin = data => {
-    this.setState({
-      isLoggedIn: true,
-      user: data.user,
-    });
-  };
+  // componentDidMount() {
+  //   this.props.autoLogin()
+  // }
 
   handleLogout = () => {
+    console.log( 'here', this.state.laggedIn )
+    
     this.setState({
-      isLoggedIn: false,
+      loggedIn: false,
       user: {},
     });
+    
   };
 
+
+                      // handleLogin = data => {
+                      //   this.setState({
+                      //     loggedIn: true,
+                      //     user: data.user,
+                      //   });
+                      // }; 
+                            // handleLogout = () => {
+                            //   console.log( 'here', this.state.laggedIn )
+                              
+                            //   this.setState({
+                            //     loggedIn: false,
+                            //     user: {},
+                            //   });
+                              
+                            // };
+
   render() {
-    // console.log('st3', this.state.user);
-    const { id, username } = this.state.user;
-    // console.log('in app render', id, username);
+    const { id, username } = this.props.userReducer.user;
+    const  loggedIn  = this.props.userReducer.loggedIn
+    console.log('id,user,logdIn', id, username,loggedIn) //this.props.userReducer.user.id, this.props.userReducer.user.username)
+
     return (
       <div className="container-fluid  text-center text-white px-0">
         <BrowserRouter>
@@ -56,12 +69,12 @@ class App extends Component {
               exact
               path="/"
               render={props => (
-                <Home
+                <Home 
                   {...props}
                   handleLogout={this.handleLogout}
-                  loggedInStatus={this.state.isLoggedIn}
+                  loggedIn={this.state.loggedIn}
                 />
-              )}
+              )} 
             />
             <Route
               path="/Inputs1"
@@ -89,7 +102,7 @@ class App extends Component {
                 <Login
                   {...props}
                   handleLogin={this.handleLogin}
-                  loggedInStatus={this.state.isLoggedIn}
+                  loggedIn={this.state.loggedIn}
                 />
               )}
             />
@@ -100,7 +113,7 @@ class App extends Component {
                 <Signup
                   {...props}
                   handleLogin={this.handleLogin}
-                  loggedInStatus={this.state.isLoggedIn}
+                  loggedIn={this.state.loggedIn}
                 />
               )}
             />
@@ -117,9 +130,22 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    userReducer: state.userReducer,
+    loggedIn: state.userReducer
+  }
+}
+
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     autoLogin: () => dispatch(autoLogin())
+//   }
+// }
+
 App.propTypes = {
   handleLogout: PropTypes.func,
   history: PropTypes.string,
 };
 
-export default App;
+export default connect(mapStateToProps, null)(App);

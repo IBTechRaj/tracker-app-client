@@ -22,7 +22,7 @@ class TrackIt extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:3001/curriculums', { withCredentials: true })
+      .get('http://localhost:3001/curriculums')
       .then(response => {
         this.setState({
           curriculums: response.data,
