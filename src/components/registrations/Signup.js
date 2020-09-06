@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
-import { connect } from 'react-redux'
-import  { signUp } from '../../actions/userActions'
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
+import { signUp } from '../../actions/userActions';
 import '../../styles/style.css';
 
 class Signup extends Component {
@@ -12,7 +12,7 @@ class Signup extends Component {
       username: '',
       email: '',
       password: '',
-      password_confirmation: '',
+      passwordConfirmation: '',
     };
   }
 
@@ -25,52 +25,19 @@ class Signup extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.signUp( this.state )
-    if ( this.props.loggedIn ) {
-      this.redirect()
+    this.props.signUp(this.state);
+    if (this.props.loggedIn) {
+      this.redirect();
     }
-    //   const {
-    //     username, email, password, passwordConfirmation,
-    //   } = this.state;
-    //   const userInfo = {
-    //     username,
-    //     email,
-    //     password,
-    //     passwordConfirmation,
-    //   };
-    //   console.log(userInfo);
-    //   fetch( `http://localhost:3001/auth/signup`, {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       "Accept": "application/json"
-    //     },
-    //     body: JSON.stringify( userInfo )
-    //   } )
-    //     .then( res => console.log(res.json()) )
-                          
-                            
-    // };
-                            
   }
 
   redirect = () => {
     this.props.history.push('/Inputs1');
   };
 
-                          // handleErrors = () => (
-                          //   <div>
-                          //     <ul>
-                          //       {this.state.errors.map(error => (
-                          //         <li key={error}>{error}</li>
-                          //       ))}
-                          //     </ul>
-                          //   </div>
-                          // );
-
   render() {
     const {
-      username, email, password, password_confirmation,
+      username, email, password, passwordConfirmation,
     } = this.state;
     return (
       <div className="container-fluid text-dark bg-light h-100">
@@ -111,15 +78,15 @@ class Signup extends Component {
               className="form-control"
               placeholder="password confirmation"
               type="password"
-              name="password_confirmation"
-              value={password_confirmation}
+              name="passwordConfirmation"
+              value={passwordConfirmation}
               onChange={this.handleChange}
             />
           </label>
 
           <label className="justify-left w-100 px-5">
             {' '}
-            <input className="w-100 btn btn-primary" type="submit" />
+            <input className="w-100 btn btn-custom" type="submit" />
           </label>
         </form>
         <div>{this.state.errors ? this.handleErrors() : null}</div>
@@ -128,20 +95,18 @@ class Signup extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    loggedIn: state.userReducer
-  }
-}
-const mapDispatchToProps = ( dispatch ) => {
-  return {
-  signUp: (userInfo) => dispatch(signUp(userInfo))
-  }
-}
+const mapStateToProps = (state) => ({
+  loggedIn: state.userReducer,
+});
+const mapDispatchToProps = (dispatch) => ({
+  signUp: (userInfo) => dispatch(signUp(userInfo)),
+});
 
 Signup.propTypes = {
-  handleLogin: PropTypes.func.isRequired,
-  history: PropTypes.string,
+  signUp: PropTypes.func.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
+  // handleSubmit: PropTypes.func.isRequired,
+  history: ReactRouterPropTypes.history.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps) (Signup);
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

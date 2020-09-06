@@ -3,7 +3,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import '../styles/style.css';
+// import '../styles/style.css';
+import '../styles/home.css';
 
 class Inputs1 extends Component {
   constructor(props) {
@@ -15,10 +16,6 @@ class Inputs1 extends Component {
       modulesTarget: '',
     };
   }
-
-  // UNSAFE_componentWillMount() {
-  //   return this.props.loggedInStatus ? this.redirect() : null;
-  // }
 
   handleChange = event => {
     const { name, value } = event.target;
@@ -34,12 +31,6 @@ class Inputs1 extends Component {
       hoursDone, hoursTarget, modulesDone, modulesTarget,
     } = this.state;
 
-    // const user = {
-    //   hoursDone,
-    //   hoursTarget,
-    //   modulesDone,
-    //   modulesTarget
-    // };
     const curriculum = {
       entry_date: `${edate}`,
       name: 'Tech Skills Curriculum',
@@ -49,26 +40,23 @@ class Inputs1 extends Component {
       modules_target: modulesTarget,
       user_id: this.props.id,
     };
-    // console.log('o', curriculum);
+
     axios.post('http://localhost:3001/curriculums', {
       curriculum,
     })
-    .then(response => {
-    if (response.status === 201){
-      console.log( "Data added" );
-     this.setState( {
-        hoursDone: '',
-      hoursTarget: '',
-      modulesDone: '',
-       modulesTarget: '',
-     } )
-      
-    }
-      
-    })
-    .catch(error => {
-      console.log(error);
-    });
+      .then(response => {
+        if (response.status === 201) {
+          this.setState({
+            hoursDone: '',
+            hoursTarget: '',
+            modulesDone: '',
+            modulesTarget: '',
+          });
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   redirect = () => {
@@ -86,9 +74,7 @@ class Inputs1 extends Component {
   );
 
   render() {
-    // const { hoursDone, hoursTarget, modulesDone, modulesTarget } = this.state;
     return (
-      // <div className="container-fluid  bg-light h-100 text-left text-dark w-100">
       <div className="container-fluid  body-bg  text-dark text-left font-weight-bold  mb-0 px-0">
         <div className="w-100 text-center body-header text-dark px-0 py-1">
           <h1>Technial Curriculum (1/3)</h1>
@@ -113,8 +99,6 @@ class Inputs1 extends Component {
             <input
               className="w-100"
               type="text"
-              // inputMode="numeric"
-              // pattern="[0-9]+([\.,][0-9]+)?"
               name="hoursTarget"
               value={this.state.hoursTarget}
               onChange={this.handleChange}
@@ -145,24 +129,14 @@ class Inputs1 extends Component {
           <label className="justify-left w-100 px-5">
             {' '}
             <input
-              className="w-100 btn btn-primary"
+              className="w-100 btn btn-custom"
               type="submit"
-              // name="modulesTarget"
-              // value={this.state.modulesTarget}
-              // onChange={this.handleChange}
             />
           </label>
-          {/* <button type="submit" className="btn mt-3 ">
-            {" "}
-            Submit
-          </button> */}
-          {/* <div>
-            <Link to="/Inputs2">Next</Link>
-          </div> */}
         </form>
-        {/* <div>{this.state.errors ? this.handleErrors() : null}</div> */}
+        <br></br>
+        <br></br>
         <div className="row ">
-          {/* <div className="col-sm-12"> */}
           <div
             className="col-sm py-3   text-muted item-height"
             style={{
@@ -172,10 +146,7 @@ class Inputs1 extends Component {
               marginBottom: '2em',
             }}
           >
-            {/* <Link to="/Inputs1" style={{ color: "white" }}> */}
             Prev
-            {/* </Link> */}
-            {/* </button> */}
           </div>
           <div
             className="col-sm py-3   text-white item-height"
@@ -189,9 +160,7 @@ class Inputs1 extends Component {
             <Link to="/Inputs2" style={{ color: 'white' }}>
               Next
             </Link>
-            {/* </button> */}
           </div>
-          {/* </div> */}
         </div>
       </div>
     );
@@ -204,7 +173,4 @@ Inputs1.propTypes = {
   id: PropTypes.number,
 };
 
-// Inputs1.defaultProps = {
-//   history: PropTypes.Object,
-// };
 export default Inputs1;

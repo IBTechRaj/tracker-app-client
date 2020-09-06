@@ -28,7 +28,6 @@ class TrackIt extends Component {
           curriculums: response.data,
         });
       });
-    // .catch(error => console.log(error));
   }
 
   render() {
@@ -45,14 +44,9 @@ class TrackIt extends Component {
       return 0;
     });
 
-    // console.log(myCurriculums);
     return (
       <>
         <div className="container-fluid  body-bg  text-dark text-center font-weight-bold track-height mb-0 px-0">
-          {/* <div className="container-fluid text-center text-dark bg-light h-100"> */}
-          {/* <h1 className="Curriculums-container">
-            Track Progress - {this.props.user}
-          </h1> */}
           <div className="w-100 text-center body-header text-dark px-0 py-1">
             <h1>Track Record - {this.props.user}</h1>
           </div>
@@ -70,10 +64,12 @@ class TrackIt extends Component {
     );
   }
 }
+
 TrackIt.propTypes = {
   id: PropTypes.number,
   username: PropTypes.string,
   user: PropTypes.string,
   data: PropTypes.object,
 };
+
 export default TrackIt;

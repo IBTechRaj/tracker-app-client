@@ -8,14 +8,9 @@ function Footer() {
     <>
       <div
         className="container-fluid   bg-footer justify-content-center  footer-height font-weight-bold px-0"
-        
+
       >
         <div className="row footer-height" >
-          {/* </button> */}
-          {/* </div> */}
-          {/* <div className=" col-md ">
-            <Link to="/Inputs1">Add data</Link>
-          </div> */}
           <div className=" col-sm-3 py-3   text-white justify-content-center d-flex get-hover footer-height" >
             <Link to="/Inputs1" style={{ color: 'white', marginTop: '3em' }} >
               Add Data
@@ -33,7 +28,7 @@ function Footer() {
           </div>
           <div className=" col-sm-3  py-3   text-white  justify-content-center d-flex  get-hover  footer-height ">
             <Link to="/" style={{ color: 'white', marginTop: '3em' }} className="get-hover">
-              Home
+              Log Out
             </Link>
           </div>
         </div>

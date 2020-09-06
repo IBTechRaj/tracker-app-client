@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-// import {autoLogin} from './actions/userActions'
+import { connect } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Home from './components/Home';
@@ -13,53 +12,36 @@ import TrackIt from './components/TrackIt';
 import Progress from './components/Progress';
 import Login from './components/registrations/Login';
 import Signup from './components/registrations/Signup';
+import { logOut } from './actions/userActions';
 import './App.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loggedIn: true,
-      user: {},
-    };
-  }
-
-  // componentDidMount() {
-  //   this.props.autoLogin()
+  // constructor(props) {
+  //   super(props);
+  //   // this.state = {
+  //   //   loggedIn: true,
+  //   //   user: {},
+  //   // };
   // }
 
+
   handleLogout = () => {
-    console.log( 'here', this.state.laggedIn )
-    
-    this.setState({
-      loggedIn: false,
-      user: {},
-    });
-    
+    this.props.logOut();
+    // this.setState({
+    //   loggedIn: false,
+    //   user: {},
+    // });
   };
 
-
-                      // handleLogin = data => {
-                      //   this.setState({
-                      //     loggedIn: true,
-                      //     user: data.user,
-                      //   });
-                      // }; 
-                            // handleLogout = () => {
-                            //   console.log( 'here', this.state.laggedIn )
-                              
-                            //   this.setState({
-                            //     loggedIn: false,
-                            //     user: {},
-                            //   });
-                              
-                            // };
-
   render() {
-    const { id, username } = this.props.userReducer.user;
-    const  loggedIn  = this.props.userReducer.loggedIn
-    console.log('id,user,logdIn', id, username,loggedIn) //this.props.userReducer.user.id, this.props.userReducer.user.username)
+    // const mapStateToProps = (state) => ({
+    //   userReducer: state.userReducer,
+    //   loggedIn: state.userReducer,
+    // } );
 
+    const { id, username } = this.props.userReducer.user;
+    // const { loggedIn } = this.props.userReducer;
+    // console.log('l', loggedIn)
     return (
       <div className="container-fluid  text-center text-white px-0">
         <BrowserRouter>
@@ -69,12 +51,12 @@ class App extends Component {
               exact
               path="/"
               render={props => (
-                <Home 
+                <Home
                   {...props}
                   handleLogout={this.handleLogout}
-                  loggedIn={this.state.loggedIn}
+                  loggedIn={this.props.loggedIn}
                 />
-              )} 
+              )}
             />
             <Route
               path="/Inputs1"
@@ -102,7 +84,7 @@ class App extends Component {
                 <Login
                   {...props}
                   handleLogin={this.handleLogin}
-                  loggedIn={this.state.loggedIn}
+                  loggedIn={this.props.loggedIn}
                 />
               )}
             />
@@ -113,7 +95,7 @@ class App extends Component {
                 <Signup
                   {...props}
                   handleLogin={this.handleLogin}
-                  loggedIn={this.state.loggedIn}
+                  loggedIn={this.props.loggedIn}
                 />
               )}
             />
@@ -130,22 +112,21 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    userReducer: state.userReducer,
-    loggedIn: state.userReducer
-  }
-}
+const mapStateToProps = (state) => ({
+  userReducer: state.userReducer,
+  loggedIn: state.userReducer,
+});
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     autoLogin: () => dispatch(autoLogin())
-//   }
-// }
+const mapDispatchToProps = (dispatch) => ({
+  logOut: () => dispatch(logOut()),
+});
 
 App.propTypes = {
+  userReducer: PropTypes.object.isRequired,
   handleLogout: PropTypes.func,
   history: PropTypes.string,
+  loggedIn: PropTypes.bool,
+  logOut: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, null)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
