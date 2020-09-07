@@ -43,7 +43,7 @@ class TrackIt extends Component {
       }
       return 0;
     });
-
+const { id, username } = this.props.userReducer.user;
     return (
       <>
         <div className="container-fluid  body-bg  text-dark text-center font-weight-bold track-height mb-0 px-0">
@@ -65,6 +65,11 @@ class TrackIt extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  userReducer: state.userReducer,
+  loggedIn: state.userReducer,
+});
+
 TrackIt.propTypes = {
   id: PropTypes.number,
   username: PropTypes.string,
@@ -72,4 +77,4 @@ TrackIt.propTypes = {
   data: PropTypes.object,
 };
 
-export default TrackIt;
+export default connect(mapStateToProps, mapDispatchToProps) (TrackIt);

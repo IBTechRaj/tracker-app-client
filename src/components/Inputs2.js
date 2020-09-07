@@ -70,7 +70,8 @@ class Inputs2 extends Component {
     </div>
   );
 
-  render() {
+  render () {
+    const { id, username } = this.props.userReducer.user;
     return (
       <div className="container-fluid  body-bg  text-dark text-left font-weight-bold  mb-0 px-0">
         <div className="w-100 text-center body-header text-dark px-0 py-1">
@@ -166,10 +167,15 @@ class Inputs2 extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  userReducer: state.userReducer,
+  loggedIn: state.userReducer,
+});
+
 
 Inputs2.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
   id: PropTypes.number,
   username: PropTypes.string,
 };
-export default Inputs2;
+export default connect(mapStateToProps, null) (Inputs2);
