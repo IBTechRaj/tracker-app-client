@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
-// import '../styles/style.css';
 import '../styles/home.css';
 
 class Inputs1 extends Component {
@@ -79,7 +78,6 @@ class Inputs1 extends Component {
         <div className="w-100 text-center body-header text-dark px-0 py-1">
           <h1>Technial Curriculum (1/3)</h1>
         </div>
-        {/* <br /> */}
 
         <form onSubmit={this.handleSubmit}>
           <label className="justify-left w-100 px-5">

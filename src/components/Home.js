@@ -30,7 +30,6 @@ Home.propTypes = {
   handleLogout: PropTypes.func.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
   push: PropTypes.func,
-  // loggedIn: PropTypes.bool,
 };
 
 export default Home;
