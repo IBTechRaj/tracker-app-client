@@ -77,7 +77,7 @@ class Inputs1 extends Component {
     return (
       <div className="container-fluid  body-bg  text-dark text-left font-weight-bold  mb-0 px-0">
         <div className="w-100 text-center body-header text-dark px-0 py-1">
-          <h1>Technial Curriculum (1/3)[user, id: {this.props.user.username} {this.props.user.id}</h1>
+          <h1>Technial Curriculum (1/3)[user, id: {this.props.user} {this.props.user.id}</h1>
         </div>
 
         <form onSubmit={this.handleSubmit}>

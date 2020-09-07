@@ -14,7 +14,8 @@ export const fetchUser = (auth) => dispatch => {
   })
     .then(res => res.json())
     .then(data => {
-      localStorage.setItem('token', data.jwt);
+      localStorage.setItem( 'token', data.jwt );
+      console.log(data.user)
       dispatch(setUser(data.user));
     });
 };
@@ -30,7 +31,8 @@ export const signUp = (auth) => dispatch => {
   })
     .then(res => res.json())
     .then(data => {
-      localStorage.setItem('token', data.jwt);
+      localStorage.setItem( 'token', data.jwt );
+      console.log(data.user)
       dispatch(setUser(data.user));
     });
 };
