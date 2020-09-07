@@ -5,7 +5,6 @@ export const logUserOut = () => ({ type: 'LOG_OUT' });
 export const fetchUser = (auth) => dispatch => {
   const loginInfo = { auth };
   fetch('https://trackit-server.herokuapp.com/auth/signin', {
-  // fetch('http://localhost:3001/auth/signin', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
