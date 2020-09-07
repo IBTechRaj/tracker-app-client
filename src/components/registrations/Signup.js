@@ -105,7 +105,6 @@ const mapDispatchToProps = (dispatch) => ({
 Signup.propTypes = {
   signUp: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool.isRequired,
-  // handleSubmit: PropTypes.func.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
 };
 
