@@ -41,7 +41,7 @@ class Inputs2 extends Component {
       user_id: this.props.id,
     };
     axios
-      .post('http://localhost:3001/curriculums', {
+      .post('https://trackit-server.herokuapp.com/curriculums', {
         curriculum,
       })
       .then(response => {
