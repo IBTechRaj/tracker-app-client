@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';

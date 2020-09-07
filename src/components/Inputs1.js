@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -73,11 +74,10 @@ class Inputs1 extends Component {
   );
 
   render () {
-    const { id, username } = this.props.userReducer.user;
     return (
       <div className="container-fluid  body-bg  text-dark text-left font-weight-bold  mb-0 px-0">
         <div className="w-100 text-center body-header text-dark px-0 py-1">
-          <h1>Technial Curriculum (1/3)[user: {this.props.id}</h1>
+          <h1>Technial Curriculum (1/3)[user, id: {this.props.username} {this.props.id}</h1>
         </div>
 
         <form onSubmit={this.handleSubmit}>

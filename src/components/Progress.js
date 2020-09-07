@@ -1,6 +1,7 @@
 /* eslint no-return-assign: "error" */
 
 import React from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import '../styles/home.css';
@@ -233,14 +234,16 @@ const { id, username } = this.props.userReducer.user;
   }
 }
 
+
 const mapStateToProps = (state) => ({
   userReducer: state.userReducer,
   loggedIn: state.userReducer,
-});
+} );
 
+Progress.propTypes = {
   id: PropTypes.number,
   user: PropTypes.string,
   username: PropTypes.string,
   data: PropTypes.object,
 };
-export default connect(mapStateToProps, null) (Progress);
+export default connect(mapStateToProps,null) (Progress);

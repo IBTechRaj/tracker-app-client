@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import '../styles/home.css';
@@ -77,4 +78,4 @@ TrackIt.propTypes = {
   data: PropTypes.object,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps) (TrackIt);
+export default connect(mapStateToProps, null) (TrackIt);
