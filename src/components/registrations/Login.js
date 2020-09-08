@@ -22,7 +22,8 @@ class Login extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.fetchUser(this.state);
+    const loginInfo = this.state;
+    this.props.fetchUser(loginInfo);
     if (this.props.loggedIn) {
       this.redirect();
     }
