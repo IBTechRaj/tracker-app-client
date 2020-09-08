@@ -15,7 +15,7 @@ export const fetchUser = (auth) => dispatch => {
     .then(res => res.json())
     .then(data => {
       localStorage.setItem('token', data.jwt);
-      const myUser = { id: data.user.id, uname: data.user.username };
+      const myUser = { id: data.id, uname: data.username };
       dispatch(setUser(myUser));
     });
 };
