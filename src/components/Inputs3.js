@@ -54,10 +54,10 @@ class Inputs3 extends Component {
             modulesTarget: '',
           });
         }
-      })
-      .catch(error => {
-        console.log(error);
       });
+    // .catch(error => {
+    //   console.log(error);
+    // })
   };
 
   redirect = () => {

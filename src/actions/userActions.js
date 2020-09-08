@@ -17,7 +17,6 @@ export const fetchUser = (auth) => dispatch => {
     .then(data => {
       localStorage.setItem('token', data.jwt);
       const myUser = { id: data.user.id, uname: data.user.username };
-      console.log('in',myUser)
       dispatch(setUser(myUser));
     });
 };
@@ -36,7 +35,6 @@ export const signUp = (auth) => dispatch => {
     .then(data => {
       localStorage.setItem('token', data.jwt);
       const myUser2 = { id: data.id, uname: data.username };
-      console.log('up',myUser2)
       dispatch(setUser(myUser2));
     });
 };

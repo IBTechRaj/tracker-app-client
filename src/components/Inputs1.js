@@ -43,7 +43,6 @@ class Inputs1 extends Component {
       modules_target: modulesTarget,
       user_id: this.props.user.id,
     };
-    console.log('user.id', this.props.user.id)
     // axios.post('https://trackit-server.herokuapp.com/curriculums', {
     axios.post('http://localhost:3001/curriculums', {
       curriculum,
@@ -57,10 +56,10 @@ class Inputs1 extends Component {
             modulesTarget: '',
           });
         }
-      })
-      .catch(error => {
-        console.log(error);
       });
+    // .catch(error => {
+    //   console.log(error);
+    // });
   };
 
   redirect = () => {
