@@ -12,8 +12,10 @@ class Progress extends React.Component {
 
     this.state = {
       curriculums: [],
-      id: this.props.data,
-      username: this.props.data,
+      // id: this.props.data,
+      // username: this.props.data,
+      id: this.props.user.id,
+      username: this.props.user.uname,
       user_id: '',
       name: '',
       hours_done: '',
@@ -31,7 +33,7 @@ class Progress extends React.Component {
 
   componentDidMount() {
     axios
-      .get('https://trackit-server.herokuapp.com/curriculums')
+      .get('http://localhost:3001/curriculums')
       .then(({ data }) => {
         let th = 0;
         let tm = 0;
@@ -48,7 +50,7 @@ class Progress extends React.Component {
 
         if (typeof data === 'object') {
           data.forEach(hours => {
-            if (this.props.id === hours.user_id) {
+            if (this.props.user.id === hours.user_id) {
               if (hours.name === 'Tech Skills Curriculum') {
                 th = parseInt(hours.hours_done, 10);
                 tm = parseInt(hours.modules_done, 10);
@@ -96,12 +98,12 @@ class Progress extends React.Component {
     this.circumference = this.normalizedRadius * 2 * Math.PI;
 
     let strokeDashoffset = this.circumference - (50 / 100) * this.circumference;
-const { id, username } = this.props.userReducer.user;
+// const { id, username } = this.props.userReducer.user;
     return (
       <>
         <div className="container-fluid  body-bg  text-dark text-center font-weight-bold  mb-0 px-0 track-height">
           <div className="w-100 text-center body-header text-dark px-0 py-1">
-            <h1>Track Progress - {this.props.user}</h1>
+            <h1>Track Progress - {this.props.user.uname}</h1>
           </div>
           <div className="row  text-center border border-primary px-5">
             Technical Curriculum
@@ -235,10 +237,12 @@ const { id, username } = this.props.userReducer.user;
 }
 
 
+
 const mapStateToProps = (state) => ({
   userReducer: state.userReducer,
   loggedIn: state.userReducer,
-} );
+  user: state.userReducer.user,
+});
 
 Progress.propTypes = {
   id: PropTypes.number,

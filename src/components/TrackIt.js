@@ -23,7 +23,7 @@ class TrackIt extends Component {
 
   componentDidMount() {
     axios
-      .get('https://trackit-server.herokuapp.com/curriculums')
+      .get('http://localhost:3001/curriculums')
       .then(response => {
         this.setState({
           curriculums: response.data,
@@ -33,7 +33,7 @@ class TrackIt extends Component {
 
   render() {
     const name = this.state.curriculums.filter(
-      c => c.user_id === this.props.id,
+      c => c.user_id === this.props.user.id,
     );
     const myCurriculums = name.sort((name1, name2) => {
       if (name1.name > name2.name) {
@@ -44,12 +44,12 @@ class TrackIt extends Component {
       }
       return 0;
     });
-const { id, username } = this.props.userReducer.user;
+// const { id, username } = this.props.userReducer.user;
     return (
       <>
         <div className="container-fluid  body-bg  text-dark text-center font-weight-bold track-height mb-0 px-0">
           <div className="w-100 text-center body-header text-dark px-0 py-1">
-            <h1>Track Record - {this.props.user}</h1>
+            <h1>Track Record - {this.props.user.uname}</h1>
           </div>
           {myCurriculums.map(myCurriculum => (
             <div className="curriculum-list" key={myCurriculum.id}>
@@ -66,9 +66,11 @@ const { id, username } = this.props.userReducer.user;
   }
 }
 
+
 const mapStateToProps = (state) => ({
   userReducer: state.userReducer,
   loggedIn: state.userReducer,
+  user: state.userReducer.user,
 });
 
 TrackIt.propTypes = {

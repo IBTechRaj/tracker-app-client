@@ -39,10 +39,10 @@ class Inputs2 extends Component {
       hours_target: hoursTarget,
       modules_done: modulesDone,
       modules_target: modulesTarget,
-      user_id: this.props.id,
+      user_id: this.props.user.id,
     };
     axios
-      .post('https://trackit-server.herokuapp.com/curriculums', {
+      .post('http://localhost:3001/curriculums', {
         curriculum,
       })
       .then(response => {
@@ -72,7 +72,7 @@ class Inputs2 extends Component {
   );
 
   render () {
-    const { id, username } = this.props.userReducer.user;
+    // const { id, username } = this.props.userReducer.user;
     return (
       <div className="container-fluid  body-bg  text-dark text-left font-weight-bold  mb-0 px-0">
         <div className="w-100 text-center body-header text-dark px-0 py-1">
@@ -168,9 +168,11 @@ class Inputs2 extends Component {
   }
 }
 
+
 const mapStateToProps = (state) => ({
   userReducer: state.userReducer,
   loggedIn: state.userReducer,
+  user: state.userReducer.user,
 });
 
 

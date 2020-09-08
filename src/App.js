@@ -16,13 +16,14 @@ import { logOut } from './actions/userActions';
 import './App.css';
 
 class App extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   // this.state = {
-  //   //   loggedIn: true,
-  //   //   user: {},
-  //   // };
-  // }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      loggedIn: props.userReducer,
+      user: this.props.u,
+    };
+  }
 
 
   handleLogout = () => {
@@ -39,9 +40,11 @@ class App extends Component {
     //   loggedIn: state.userReducer,
     // } );
 
-    const { id, username } = this.props.userReducer.user;
+  // console.log('prop- uid,uname, logdIn:',this.props.userReducer.user.id, this.props.userReducer.user.username, this.props.userReducer.loggedIn)
+  console.log('propxxxxx: i : u',this.state, this.props, this.props.u)
+    const { id, username } = this.state.user;
     // const { loggedIn } = this.props.userReducer;
-    // console.log('l', loggedIn)
+    console.log('ld, un', id,username)
     return (
       <div className="container-fluid  text-center text-white px-0">
         <BrowserRouter>
@@ -115,7 +118,15 @@ class App extends Component {
 const mapStateToProps = (state) => ({
   userReducer: state.userReducer,
   loggedIn: state.userReducer,
-});
+  i: state.id,
+  u: state.userReducer.user
+  // const {loggedIn, user} = state;
+  // return {
+  //   loggedIn,
+  //   user,
+  // }
+})
+
 
 const mapDispatchToProps = (dispatch) => ({
   logOut: () => dispatch(logOut()),
