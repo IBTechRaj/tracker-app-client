@@ -74,8 +74,7 @@ class Inputs3 extends Component {
     </div>
   );
 
-  render () {
-    // const { id, username } = this.props.userReducer.user;
+  render() {
     return (
       <div className="container-fluid  body-bg  text-dark text-left font-weight-bold  mb-0 px-0">
         <div className="w-100 text-center body-header text-dark px-0 py-1">
@@ -182,6 +181,8 @@ Inputs3.propTypes = {
   username: PropTypes.string,
   history: ReactRouterPropTypes.history.isRequired,
   push: PropTypes.func,
+  user: PropTypes.object,
+  // user.id: PropTypes.number,
 };
 
-export default connect(mapStateToProps, null) (Inputs3);
+export default connect(mapStateToProps, null)(Inputs3);

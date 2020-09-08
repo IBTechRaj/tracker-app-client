@@ -19,7 +19,7 @@ class TrackIt extends Component {
       modules_done: '',
       modules_target: '',
     };
-  } 
+  }
 
   componentDidMount() {
     axios
@@ -44,7 +44,6 @@ class TrackIt extends Component {
       }
       return 0;
     });
-// const { id, username } = this.props.userReducer.user;
     return (
       <>
         <div className="container-fluid  body-bg  text-dark text-center font-weight-bold track-height mb-0 px-0">
@@ -80,4 +79,4 @@ TrackIt.propTypes = {
   data: PropTypes.object,
 };
 
-export default connect(mapStateToProps, null) (TrackIt);
+export default connect(mapStateToProps, null)(TrackIt);

@@ -16,7 +16,6 @@ import { logOut } from './actions/userActions';
 import './App.css';
 
 class App extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -28,23 +27,10 @@ class App extends Component {
 
   handleLogout = () => {
     this.props.logOut();
-    // this.setState({
-    //   loggedIn: false,
-    //   user: {},
-    // });
   };
 
   render() {
-    // const mapStateToProps = (state) => ({
-    //   userReducer: state.userReducer,
-    //   loggedIn: state.userReducer,
-    // } );
-
-  // console.log('prop- uid,uname, logdIn:',this.props.userReducer.user.id, this.props.userReducer.user.username, this.props.userReducer.loggedIn)
-  console.log('propxxxxx: i : u',this.state, this.props, this.props.u)
     const { id, username } = this.state.user;
-    // const { loggedIn } = this.props.userReducer;
-    console.log('ld, un', id,username)
     return (
       <div className="container-fluid  text-center text-white px-0">
         <BrowserRouter>
@@ -119,13 +105,8 @@ const mapStateToProps = (state) => ({
   userReducer: state.userReducer,
   loggedIn: state.userReducer,
   i: state.id,
-  u: state.userReducer.user
-  // const {loggedIn, user} = state;
-  // return {
-  //   loggedIn,
-  //   user,
-  // }
-})
+  u: state.userReducer.user,
+});
 
 
 const mapDispatchToProps = (dispatch) => ({
@@ -133,10 +114,11 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 App.propTypes = {
+  u: PropTypes.object,
   userReducer: PropTypes.object.isRequired,
   handleLogout: PropTypes.func,
   history: PropTypes.string,
-  loggedIn: PropTypes.bool,
+  loggedIn: PropTypes.object,
   logOut: PropTypes.func.isRequired,
 };
 

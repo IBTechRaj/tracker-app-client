@@ -37,7 +37,7 @@ class Signup extends Component {
 
   render() {
     const {
-      username, email, password, passwordConfirmation
+      username, email, password, passwordConfirmation,
     } = this.state;
     return (
       <div className="container-fluid text-dark bg-light h-100">

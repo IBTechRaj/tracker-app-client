@@ -3,10 +3,8 @@ const defaultState = {
   user: {},
 };
 
-const userReducer = ( state = defaultState, action ) => {
-   console.log('l-uid-unm-lgdn',action.payload)
-  switch ( action.type ) {
-   
+const userReducer = (state = defaultState, action) => {
+  switch (action.type) {
     case 'SET_USER':
       return {
         loggedIn: true,

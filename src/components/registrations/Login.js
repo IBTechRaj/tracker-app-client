@@ -98,7 +98,7 @@ Login.propTypes = {
   fetchUser: PropTypes.func.isRequired,
   history: PropTypes.object,
   push: PropTypes.func,
-  loggedIn: PropTypes.bool,
+  loggedIn: PropTypes.object,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

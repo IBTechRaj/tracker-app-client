@@ -12,8 +12,6 @@ class Progress extends React.Component {
 
     this.state = {
       curriculums: [],
-      // id: this.props.data,
-      // username: this.props.data,
       id: this.props.user.id,
       username: this.props.user.uname,
       user_id: '',
@@ -98,7 +96,6 @@ class Progress extends React.Component {
     this.circumference = this.normalizedRadius * 2 * Math.PI;
 
     let strokeDashoffset = this.circumference - (50 / 100) * this.circumference;
-// const { id, username } = this.props.userReducer.user;
     return (
       <>
         <div className="container-fluid  body-bg  text-dark text-center font-weight-bold  mb-0 px-0 track-height">
@@ -237,7 +234,6 @@ class Progress extends React.Component {
 }
 
 
-
 const mapStateToProps = (state) => ({
   userReducer: state.userReducer,
   loggedIn: state.userReducer,
@@ -250,4 +246,4 @@ Progress.propTypes = {
   username: PropTypes.string,
   data: PropTypes.object,
 };
-export default connect(mapStateToProps,null) (Progress);
+export default connect(mapStateToProps, null)(Progress);

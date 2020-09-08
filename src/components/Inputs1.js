@@ -16,7 +16,7 @@ class Inputs1 extends Component {
       modulesTarget: '',
       loggedIn: this.props.userReducer.loggedIn,
       userId: this.props.user.id,
-      userName: this.props.userReducer.user.username
+      userName: this.props.userReducer.user.username,
     };
   }
 
@@ -31,7 +31,7 @@ class Inputs1 extends Component {
     event.preventDefault();
     const edate = new Date().toDateString();
     const {
-      hoursDone, hoursTarget, modulesDone, modulesTarget, userId
+      hoursDone, hoursTarget, modulesDone, modulesTarget,
     } = this.state;
 
     const curriculum = {
@@ -43,8 +43,7 @@ class Inputs1 extends Component {
       modules_target: modulesTarget,
       user_id: this.props.user.id,
     };
-    console.log( curriculum )
-    console.log('i',this.props.user.id,this.props.user.uname)
+    console.log('user.id', this.props.user.id)
     // axios.post('https://trackit-server.herokuapp.com/curriculums', {
     axios.post('http://localhost:3001/curriculums', {
       curriculum,
@@ -78,13 +77,11 @@ class Inputs1 extends Component {
     </div>
   );
 
-  render () {
-    console.log('ir',this.props.user.id)
+  render() {
     return (
       <div className="container-fluid  body-bg  text-dark text-left font-weight-bold  mb-0 px-0">
         <div className="w-100 text-center body-header text-dark px-0 py-1">
           <h1>Technial Curriculum (1/3)</h1>
-          {/* [user, id: {this.props.user} {this.props.user.id} */}
         </div>
 
         <form onSubmit={this.handleSubmit}>
@@ -180,9 +177,11 @@ const mapStateToProps = (state) => ({
 });
 
 Inputs1.propTypes = {
+  userReducer: PropTypes.object.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
   loggedInStatus: PropTypes.bool,
   id: PropTypes.number,
+  user: PropTypes.object,
 };
 
-export default connect(mapStateToProps, null) (Inputs1);
+export default connect(mapStateToProps, null)(Inputs1);
