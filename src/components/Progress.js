@@ -29,9 +29,10 @@ class Progress extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount () {
+    
     axios
-      .get('http://localhost:3001/curriculums')
+      .get('https://trackit-server.herokuapp.com/curriculums')
       .then(({ data }) => {
         let th = 0;
         let tm = 0;

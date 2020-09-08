@@ -9,7 +9,6 @@ import App from './App';
 import './index.css';
 
 
-// const store = createStore(rootReducer, applyMiddleware(thunk));
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(

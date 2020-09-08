@@ -23,7 +23,7 @@ class TrackIt extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:3001/curriculums')
+      .get('https://trackit-server.herokuapp.com/curriculums')
       .then(response => {
         this.setState({
           curriculums: response.data,
