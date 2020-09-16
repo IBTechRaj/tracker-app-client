@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import { signUp } from '../../actions/userActions';
+import { signUp } from '../../store/thunks/user';
 import '../../styles/style.css';
 
 class Signup extends Component {
@@ -25,10 +25,12 @@ class Signup extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.signUp(this.state);
-    if (this.props.loggedIn) {
-      this.redirect();
-    }
+    const {username, email, password}= this.state
+    const signinInfo = {username, email, password}
+    this.props.signUp(signinInfo);
+    // if (this.props.loggedIn) {
+    //   this.redirect();
+    // }
   }
 
   redirect = () => {
@@ -99,12 +101,12 @@ const mapStateToProps = (state) => ({
   loggedIn: state.userReducer,
 });
 const mapDispatchToProps = (dispatch) => ({
-  signUp: (userInfo) => dispatch(signUp(userInfo)),
+  signUp: (signinInfo) => dispatch(signUp(signinInfo)),
 });
 
 Signup.propTypes = {
   signUp: PropTypes.func.isRequired,
-  loggedIn: PropTypes.bool.isRequired,
+  loggedIn: PropTypes.object.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
 };
 

@@ -14,9 +14,9 @@ class Inputs1 extends Component {
       hoursTarget: '',
       modulesDone: '',
       modulesTarget: '',
-      loggedIn: this.props.userReducer.loggedIn,
+      loggedIn: this.props.loggedIn,
       userId: this.props.user.id,
-      userName: this.props.userReducer.user.username,
+      userName: this.props.user.username,
     };
   }
 
@@ -43,7 +43,9 @@ class Inputs1 extends Component {
       modules_target: modulesTarget,
       user_id: this.props.user.id,
     };
-    axios.post('https://trackit-server.herokuapp.com/curriculums', {
+    console.log('i1',curriculum)
+    // axios.post('https://trackit-server.herokuapp.com/curriculums', {
+    axios.post('http://localhost:3001/curriculums', {
       curriculum,
     })
       .then(response => {
@@ -72,11 +74,14 @@ class Inputs1 extends Component {
     </div>
   );
 
-  render() {
+  render () {
+    const { id, username} = this.props.user
+   console.log('1', id, username)
     return (
       <div className="container-fluid  body-bg  text-dark text-left font-weight-bold  mb-0 px-0">
         <div className="w-100 text-center body-header text-dark px-0 py-1">
-          <h1>Technial Curriculum (1/3)</h1>
+       
+          <h1>Technial Curriculum (1/3) User: {this.props.user.username}</h1>
         </div>
 
         <form onSubmit={this.handleSubmit}>
@@ -165,14 +170,19 @@ class Inputs1 extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  userReducer: state.userReducer,
-  loggedIn: state.userReducer,
-  user: state.userReducer.user,
-});
+// const mapStateToProps = (state) => ({
+//   userReducer: state.userReducer,
+//   loggedIn: state.userReducer,
+//   user: state.userReducer.user,
+// });
+
+ const mapStateToProps = (state) => ({
+ user: state.user,
+ loggedIn: state.loggedIn,
+ } )
 
 Inputs1.propTypes = {
-  userReducer: PropTypes.object.isRequired,
+  // userReducer: PropTypes.object.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
   loggedInStatus: PropTypes.bool,
   id: PropTypes.number,

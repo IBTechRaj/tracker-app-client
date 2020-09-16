@@ -23,7 +23,8 @@ class TrackIt extends Component {
 
   componentDidMount() {
     axios
-      .get('https://trackit-server.herokuapp.com/curriculums')
+      .get('http://localhost:3001/curriculums')
+      // .get('https://trackit-server.herokuapp.com/curriculums')
       .then(response => {
         this.setState({
           curriculums: response.data,
@@ -65,17 +66,28 @@ class TrackIt extends Component {
   }
 }
 
+// const mapStateToProps = (state) => ({
+//   user: state.user,
+//   loggedIn: state.user,
+//   i: state.id,
+//   u: state.user,
+// });
 
 const mapStateToProps = (state) => ({
-  userReducer: state.userReducer,
-  loggedIn: state.userReducer,
-  user: state.userReducer.user,
-});
+ user: state.user,
+ loggedIn: state.loggedIn,
+ } )
+
+// const mapStateToProps = (state) => ({
+//   userReducer: state.userReducer,
+//   loggedIn: state.userReducer,
+//   user: state.userReducer.user,
+// });
 
 TrackIt.propTypes = {
   id: PropTypes.number,
   username: PropTypes.string,
-  user: PropTypes.string,
+  user: PropTypes.object,
   data: PropTypes.object,
 };
 

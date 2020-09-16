@@ -32,7 +32,8 @@ class Progress extends React.Component {
   componentDidMount () {
     
     axios
-      .get('https://trackit-server.herokuapp.com/curriculums')
+      .get('http://localhost:3001/curriculums')
+      // .get('https://trackit-server.herokuapp.com/curriculums')
       .then(({ data }) => {
         let th = 0;
         let tm = 0;
@@ -235,11 +236,16 @@ class Progress extends React.Component {
 }
 
 
+// const mapStateToProps = (state) => ({
+//   userReducer: state.userReducer,
+//   loggedIn: state.userReducer,
+//   user: state.userReducer.user,
+// });
+
 const mapStateToProps = (state) => ({
-  userReducer: state.userReducer,
-  loggedIn: state.userReducer,
-  user: state.userReducer.user,
-});
+ user: state.user,
+ loggedIn: state.loggedIn,
+ } )
 
 Progress.propTypes = {
   id: PropTypes.number,

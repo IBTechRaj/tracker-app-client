@@ -42,7 +42,8 @@ class Inputs3 extends Component {
       user_id: this.props.user.id,
     };
     
-    axios.post('https://trackit-server.herokuapp.com/curriculums', {
+    // axios.post('https://trackit-server.herokuapp.com/curriculums', {
+    axios.post('http://localhost:3001/curriculums', {
         curriculum,
       })
       .then(response => {
@@ -166,12 +167,15 @@ class Inputs3 extends Component {
   }
 }
 
+// const mapStateToProps = (state) => ({
+//   userReducer: state.userReducer,
+//   loggedIn: state.userReducer,
+//   user: state.userReducer.user,
+// });
 const mapStateToProps = (state) => ({
-  userReducer: state.userReducer,
-  loggedIn: state.userReducer,
-  user: state.userReducer.user,
-});
-
+ user: state.user,
+ loggedIn: state.loggedIn,
+ } )
 
 Inputs3.propTypes = {
   id: PropTypes.number,

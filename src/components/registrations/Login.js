@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { fetchUser } from '../../actions/userActions';
+import { fetchUser } from '../../store/thunks/user';
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       email: '',
-      password: '',
+      password: '', 
     };
   }
 
@@ -23,10 +23,12 @@ class Login extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const loginInfo = this.state;
-    this.props.fetchUser(loginInfo);
-    if (this.props.loggedIn) {
-      this.redirect();
-    }
+    this.props.fetchUser( loginInfo );
+    
+    // if ( this.props.loggedIn ) {
+      console.log('l,u',this.props.loggedIn, this.props.user)
+      // this.redirect();
+    // }
   }
 
 redirect = () => {
@@ -87,12 +89,16 @@ redirect = () => {
   }
 }
 
-const mapStateToProps = (state) => ({
-  loggedIn: state.userReducer,
-});
+// const mapStateToProps = (state) => ({
+//   loggedIn: state.userReducer,
+// });
 
+ const mapStateToProps = (state) => ({
+ user: state.user,
+ loggedIn: state.loggedIn,
+ } )
 const mapDispatchToProps = (dispatch) => ({
-  fetchUser: (userInfo) => dispatch(fetchUser(userInfo)),
+  fetchUser: (loginInfo) => dispatch(fetchUser(loginInfo)),
 });
 
 Login.propTypes = {

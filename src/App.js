@@ -12,18 +12,17 @@ import TrackIt from './components/TrackIt';
 import Progress from './components/Progress';
 import Login from './components/registrations/Login';
 import Signup from './components/registrations/Signup';
-import { logOut } from './actions/userActions';
+import { logOut } from './store/actions/user'; 
 import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedIn: props.userReducer,
-      user: this.props.u,
+      loggedIn: this.props.loggedIn,
+      user: this.props.user,
     };
   }
-
 
   handleLogout = () => {
     this.props.logOut();
@@ -31,6 +30,7 @@ class App extends Component {
 
   render() {
     const { id, username } = this.state.user;
+    console.log('in A,id,username',id,username)
     return (
       <div className="container-fluid  text-center text-white px-0">
         <BrowserRouter>
@@ -72,7 +72,7 @@ class App extends Component {
               render={props => (
                 <Login
                   {...props}
-                  handleLogin={this.handleLogin}
+                  // handleLogin={this.handleLogin}
                   loggedIn={this.props.loggedIn}
                 />
               )}
@@ -83,7 +83,7 @@ class App extends Component {
               render={props => (
                 <Signup
                   {...props}
-                  handleLogin={this.handleLogin}
+                  // handleLogin={this.handleLogin}
                   loggedIn={this.props.loggedIn}
                 />
               )}
@@ -101,13 +101,17 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  userReducer: state.userReducer,
-  loggedIn: state.userReducer,
-  i: state.id,
-  u: state.userReducer.user,
-});
-
+// const mapStateToProps = (state) => ({
+//   user: state.user,
+//   loggedIn: state.user,
+//   i: state.id,
+//   u: state.user,
+// });
+ 
+ const mapStateToProps = (state) => ({
+ user: state.user,
+ loggedIn: state.loggedIn,
+ } )
 
 const mapDispatchToProps = (dispatch) => ({
   logOut: () => dispatch(logOut()),
@@ -115,7 +119,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 App.propTypes = {
   u: PropTypes.object,
-  userReducer: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
   handleLogout: PropTypes.func,
   history: PropTypes.string,
   loggedIn: PropTypes.object,
