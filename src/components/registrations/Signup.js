@@ -25,12 +25,19 @@ class Signup extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const {username, email, password}= this.state
-    const signinInfo = {username, email, password}
-    this.props.signUp(signinInfo);
-    // if (this.props.loggedIn) {
-    //   this.redirect();
-    // }
+    const { password, passwordConfirmation } = this.state;
+    if (password !== passwordConfirmation) {
+      this.props.history.push('/Signup');
+    }
+    const user = {
+      username: this.state.username,
+      email: this.state.email,
+      password: this.state.password,
+      password_confirmation: this.state.passwordConfirmation,
+    };
+    this.props.signUp(user);
+
+    this.redirect();
   }
 
   redirect = () => {
@@ -45,6 +52,7 @@ class Signup extends Component {
       <div className="container-fluid text-dark bg-light h-100">
         <div className="w-100 ">
           <h1>Sign Up</h1>
+          <p>{this.props.errors}</p>
         </div>
         <form onSubmit={this.handleSubmit}>
           <label className="justify-left w-100 px-5">
@@ -98,7 +106,9 @@ class Signup extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  loggedIn: state.userReducer,
+  user: state.user.user,
+  loggedIn: state.user.loggedIn,
+  errors: state.errors,
 });
 const mapDispatchToProps = (dispatch) => ({
   signUp: (signinInfo) => dispatch(signUp(signinInfo)),
@@ -106,8 +116,9 @@ const mapDispatchToProps = (dispatch) => ({
 
 Signup.propTypes = {
   signUp: PropTypes.func.isRequired,
-  loggedIn: PropTypes.object.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
+  errors: PropTypes.array,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);

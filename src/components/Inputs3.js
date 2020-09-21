@@ -41,11 +41,12 @@ class Inputs3 extends Component {
       modules_target: modulesTarget,
       user_id: this.props.user.id,
     };
-    
-    // axios.post('https://trackit-server.herokuapp.com/curriculums', {
-    axios.post('http://localhost:3001/curriculums', {
-        curriculum,
-      })
+
+    const jwt = localStorage.getItem('token');
+    const url = 'http://localhost:3001/curriculums';
+    axios.post(url, { curriculum }, {
+      headers: { Authorization: `Bearer ${jwt}` },
+    })
       .then(response => {
         if (response.status === 201) {
           this.setState({
@@ -172,10 +173,14 @@ class Inputs3 extends Component {
 //   loggedIn: state.userReducer,
 //   user: state.userReducer.user,
 // });
+// const mapStateToProps = (state) => ({
+//  user: state.user,
+//  loggedIn: state.loggedIn,
+//  } )
 const mapStateToProps = (state) => ({
- user: state.user,
- loggedIn: state.loggedIn,
- } )
+  user: state.user.user,
+  loggedIn: state.user.loggedIn,
+});
 
 Inputs3.propTypes = {
   id: PropTypes.number,

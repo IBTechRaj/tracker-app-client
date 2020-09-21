@@ -1,6 +1,8 @@
 import { SET_ERRORS } from './types';
 
-export const setErrors = (errors) => ({
+const setErrors = (setErrors) => ({
   type: SET_ERRORS,
-  errors,
+  setErrors,
 });
+
+export default setErrors;

@@ -9,7 +9,7 @@ class Login extends Component {
     super(props);
     this.state = {
       email: '',
-      password: '', 
+      password: '',
     };
   }
 
@@ -23,12 +23,9 @@ class Login extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const loginInfo = this.state;
-    this.props.fetchUser( loginInfo );
-    
-    // if ( this.props.loggedIn ) {
-      console.log('l,u',this.props.loggedIn, this.props.user)
-      // this.redirect();
-    // }
+    this.props.fetchUser(loginInfo);
+
+    this.redirect();
   }
 
 redirect = () => {
@@ -93,15 +90,17 @@ redirect = () => {
 //   loggedIn: state.userReducer,
 // });
 
- const mapStateToProps = (state) => ({
- user: state.user,
- loggedIn: state.loggedIn,
- } )
+const mapStateToProps = (state) => ({
+  user: state.user,
+  loggedIn: state.loggedIn,
+  errors: state.errors,
+});
 const mapDispatchToProps = (dispatch) => ({
   fetchUser: (loginInfo) => dispatch(fetchUser(loginInfo)),
 });
 
 Login.propTypes = {
+  user: PropTypes.object.isRequired,
   fetchUser: PropTypes.func.isRequired,
   history: PropTypes.object,
   push: PropTypes.func,

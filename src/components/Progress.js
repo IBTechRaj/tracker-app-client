@@ -29,10 +29,14 @@ class Progress extends React.Component {
     };
   }
 
-  componentDidMount () {
-    
-    axios
-      .get('http://localhost:3001/curriculums')
+  componentDidMount() {
+    const jwt = localStorage.getItem('token');
+    const url = 'http://localhost:3001/curriculums';
+    axios.get(url, {
+      headers: { Authorization: `Bearer ${jwt}` },
+    })
+    // axios
+      // .get('http://localhost:3001/curriculums')
       // .get('https://trackit-server.herokuapp.com/curriculums')
       .then(({ data }) => {
         let th = 0;
@@ -242,14 +246,18 @@ class Progress extends React.Component {
 //   user: state.userReducer.user,
 // });
 
+// const mapStateToProps = (state) => ({
+//  user: state.user,
+//  loggedIn: state.loggedIn,
+//  } )
 const mapStateToProps = (state) => ({
- user: state.user,
- loggedIn: state.loggedIn,
- } )
+  user: state.user.user,
+  loggedIn: state.user.loggedIn,
+});
 
 Progress.propTypes = {
   id: PropTypes.number,
-  user: PropTypes.string,
+  user: PropTypes.object,
   username: PropTypes.string,
   data: PropTypes.object,
 };

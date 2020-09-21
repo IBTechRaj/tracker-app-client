@@ -1,95 +1,70 @@
-import { setUser } from '../actions/user'
-// import { navigate } from '../utils/navigationRef';
-import { setErrors } from '../actions/error';
 import axios from 'axios';
-import { browserHistory } from '../../../src/index.js'
-// import createHistory from 'history/createBrowserHistory'
-// import { useHistory } from "react-router-dom";
-// import { withRouter } from "react-router-dom";
-  
-// let history= useHistory()
+import { setUser } from '../actions/user';
+import setErrors from '../actions/error';
 
-export const fetchUser = ( loginData ) => async dispatch => {
-// const history = createHistory();
-//  eslint-plugin-react-hooks
-// let history= useHistory()
-  // const loginInfo = { auth };
-
+export const fetchUser = (loginData) => async dispatch => {
   try {
-    // fetch('https://trackit-server.herokuapp.com/auth/signin', {
-    const res = await axios.post('http://localhost:3001/login', loginData )
+    const res = await axios.post('http://localhost:3001/login', loginData);
     const { jwt, user } = res.data;
-      console.log( 'ld,re',loginData, res.data )
- 
-    // if ( res ) {
-      localStorage.setItem( 'token', jwt );
-      // console.log('hh',this.props.history)
-      dispatch(
-        setUser( {
-          loggedIn: true,
-          user: user,
-        } ),
+
+    localStorage.setItem('token', jwt);
+
+
+    if (jwt) {
+      const newUrl = 'http://localhost:3001/user_is_authed';
+      axios.get(newUrl, {
+        headers: { Authorization: `Bearer ${jwt}` },
+      })
+        .catch(err => dispatch(setErrors(err)));
+    }
+
+    dispatch(
+      setUser({
+        loggedIn: true,
+        user,
+      }),
     );
-    //  <Redirect to="/Inputs1" /> 
-    browserHistory.push('/Inputs1')
-  // history.push( '/Inputs1' );
-    
-    //  console.log('h ?')
-    // }
-  } catch ( err ) {
-  // console.log('er',err)
-    dispatch( setErrors( ['Invalid x email or password!'] ) );
+  } catch (err) {
+    dispatch(setErrors(['Invalid x email or password!']));
   }
-} 
+};
 
-export const signUp = ( signupData ) => async ( dispatch ) => {
-  //  eslint-plugin-react-hooks
-  // let history= useHistory()
-  // const path = 'v1/users';
-
-  console.log('s',signupData)
+export const signUp = (newuser) => async (dispatch) => {
   try {
-    // fetch('https://trackit-server.herokuapp.com/auth/signin', {
-    const res = await axios.post( 'http://localhost:3001/users', 
-    signupData )
-    // if ( res ) {
-      const { token, user } = res.data;
-      // console.log( 'r', res.data )
-      localStorage.setItem( 'token', token );
-      dispatch(
-        setUser( {
-          loggedIn: true,
-          data: user,
-        } ),
-      );
-      // this.props.history.push( '/inputs1' )
-      // console.log('h ?')
-    // }
-  } catch ( err ) {
-    dispatch( setErrors( ['Invalid email or password!'] ) );
+    const res = await axios.post('http://localhost:3001/users', { newuser });
+
+    const { jwt, user } = res.data;
+    localStorage.setItem('token', jwt);
+
+
+    if (jwt) {
+      const newUrl = 'http://localhost:3001/user_is_authed';
+      axios.get(newUrl, {
+        headers: { Authorization: `Bearer ${jwt}` },
+      })
+        .catch(err => dispatch(setErrors(err)));
+    }
+
+    dispatch(
+      setUser({
+        loggedIn: true,
+        user,
+      }),
+    );
+  } catch (err) {
+    dispatch(setErrors(['for signup, Invalid email or password!']));
   }
-  // .then(response => {
-  //   if (response.status === 201) {
-  //     this.setState({
-  //       hoursDone: '',
-  //       hoursTarget: '',
-  //       modulesDone: '',
-  //       modulesTarget: '',
-  //     });
-  // }
-  // });
-  // fetch('http://localhost/login', {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     Accept: 'application/json',
-  //   },
-  //   body: JSON.stringify(loginInfo),
-  // })
-  //   .then(res => res.json())
-  //   .then(data => {
-  //     localStorage.setItem('token', data.jwt);
-  //     const myUser = { id: data.id, uname: data.username };
-  //     dispatch(setUser(myUser));
-  //   });
-}
+};
+
+export const logOut = () => async (dispatch) => {
+  delete axios.defaults.headers.common.Authorization;
+
+  localStorage.removeItem('token');
+
+  dispatch(
+    setUser({
+      loggedIn: false,
+      user: {},
+    }),
+  );
+};

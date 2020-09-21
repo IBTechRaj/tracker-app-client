@@ -41,10 +41,11 @@ class Inputs2 extends Component {
       modules_target: modulesTarget,
       user_id: this.props.user.id,
     };
-  
-    axios.post('https://trackit-server.herokuapp.com/curriculums', {
-        curriculum,
-      })
+    const jwt = localStorage.getItem('token');
+    const url = 'http://localhost:3001/curriculums';
+    axios.post(url, { curriculum }, {
+      headers: { Authorization: `Bearer ${jwt}` },
+    })
       .then(response => {
         if (response.status === 201) {
           this.setState({
@@ -165,12 +166,16 @@ class Inputs2 extends Component {
 }
 
 
-const mapStateToProps = (state) => ({
-  userReducer: state.userReducer,
-  loggedIn: state.userReducer,
-  user: state.userReducer.user,
-});
+// const mapStateToProps = (state) => ({
+//   userReducer: state.userReducer,
+//   loggedIn: state.userReducer,
+//   user: state.userReducer.user,
+// });
 
+const mapStateToProps = (state) => ({
+  user: state.user.user,
+  loggedIn: state.user.loggedIn,
+});
 
 Inputs2.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,

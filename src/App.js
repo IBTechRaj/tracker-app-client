@@ -12,7 +12,7 @@ import TrackIt from './components/TrackIt';
 import Progress from './components/Progress';
 import Login from './components/registrations/Login';
 import Signup from './components/registrations/Signup';
-import { logOut } from './store/actions/user'; 
+import { logOut } from './store/actions/user';
 import './App.css';
 
 class App extends Component {
@@ -29,10 +29,12 @@ class App extends Component {
   };
 
   render() {
-    const { id, username } = this.state.user;
-    console.log('in A,id,username',id,username)
+    const { id, username } = this.props.user;
+
     return (
       <div className="container-fluid  text-center text-white px-0">
+        { this.props.errors
+  && <h3 className="error"> { this.state.errorMessage } </h3> }
         <BrowserRouter>
           <Header />
           <Switch>
@@ -101,29 +103,24 @@ class App extends Component {
   }
 }
 
-// const mapStateToProps = (state) => ({
-//   user: state.user,
-//   loggedIn: state.user,
-//   i: state.id,
-//   u: state.user,
-// });
- 
- const mapStateToProps = (state) => ({
- user: state.user,
- loggedIn: state.loggedIn,
- } )
+
+const mapStateToProps = (state) => ({
+  user: state.user.user,
+  loggedIn: state.user.loggedIn,
+  errors: state.errors,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   logOut: () => dispatch(logOut()),
 });
 
 App.propTypes = {
-  u: PropTypes.object,
   user: PropTypes.object.isRequired,
   handleLogout: PropTypes.func,
   history: PropTypes.string,
-  loggedIn: PropTypes.object,
+  loggedIn: PropTypes.bool,
   logOut: PropTypes.func.isRequired,
+  errors: PropTypes.array,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

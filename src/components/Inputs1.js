@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import '../styles/home.css';
+import Spinner from './Spinner';
 
 class Inputs1 extends Component {
   constructor(props) {
@@ -43,10 +44,11 @@ class Inputs1 extends Component {
       modules_target: modulesTarget,
       user_id: this.props.user.id,
     };
-    console.log('i1',curriculum)
-    // axios.post('https://trackit-server.herokuapp.com/curriculums', {
-    axios.post('http://localhost:3001/curriculums', {
-      curriculum,
+
+    const jwt = localStorage.getItem('token');
+    const url = 'http://localhost:3001/curriculums';
+    axios.post(url, { curriculum }, {
+      headers: { Authorization: `Bearer ${jwt}` },
     })
       .then(response => {
         if (response.status === 201) {
@@ -74,14 +76,20 @@ class Inputs1 extends Component {
     </div>
   );
 
-  render () {
-    const { id, username} = this.props.user
-   console.log('1', id, username)
+  render() {
     return (
+
+      !(this.props.loggedIn) ? (
+
+        <div>
+          <h3 className="error"> { this.props.errors } </h3>
+        <Spinner />
+      </div>
+      ) : (
       <div className="container-fluid  body-bg  text-dark text-left font-weight-bold  mb-0 px-0">
         <div className="w-100 text-center body-header text-dark px-0 py-1">
-       
-          <h1>Technial Curriculum (1/3) User: {this.props.user.username}</h1>
+
+          <h1>Technial Curriculum (1/3) </h1>
         </div>
 
         <form onSubmit={this.handleSubmit}>
@@ -165,28 +173,24 @@ class Inputs1 extends Component {
             </Link>
           </div>
         </div>
-      </div>
+          </div>
+      )
     );
   }
 }
 
-// const mapStateToProps = (state) => ({
-//   userReducer: state.userReducer,
-//   loggedIn: state.userReducer,
-//   user: state.userReducer.user,
-// });
-
- const mapStateToProps = (state) => ({
- user: state.user,
- loggedIn: state.loggedIn,
- } )
+const mapStateToProps = (state) => ({
+  user: state.user.user,
+  loggedIn: state.user.loggedIn,
+  errors: state.errors,
+});
 
 Inputs1.propTypes = {
-  // userReducer: PropTypes.object.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
-  loggedInStatus: PropTypes.bool,
+  loggedIn: PropTypes.bool,
   id: PropTypes.number,
   user: PropTypes.object,
+  errors: PropTypes.array,
 };
 
 export default connect(mapStateToProps, null)(Inputs1);
