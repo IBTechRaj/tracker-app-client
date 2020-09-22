@@ -86,9 +86,6 @@ redirect = () => {
   }
 }
 
-// const mapStateToProps = (state) => ({
-//   loggedIn: state.userReducer,
-// });
 
 const mapStateToProps = (state) => ({
   user: state.user,

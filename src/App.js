@@ -10,6 +10,7 @@ import Inputs2 from './components/Inputs2';
 import Inputs3 from './components/Inputs3';
 import TrackIt from './components/TrackIt';
 import Progress from './components/Progress';
+import ShowErrors from './components/ShowErrors';
 import Login from './components/registrations/Login';
 import Signup from './components/registrations/Signup';
 import { logOut } from './store/actions/user';
@@ -21,6 +22,8 @@ class App extends Component {
     this.state = {
       loggedIn: this.props.loggedIn,
       user: this.props.user,
+      id: this.props.user.id || 0,
+      username: this.props.user.username || '',
     };
   }
 
@@ -29,8 +32,6 @@ class App extends Component {
   };
 
   render() {
-    const { id, username } = this.props.user;
-
     return (
       <div className="container-fluid  text-center text-white px-0">
         { this.props.errors
@@ -50,23 +51,27 @@ class App extends Component {
               )}
             />
             <Route
+              path="/ShowErrors"
+          render={props => <ShowErrors {...props} id={this.state.id} user={this.state.username} />}
+            />
+            <Route
               path="/Inputs1"
-              render={props => <Inputs1 {...props} id={id} user={username} />}
+              render={props => <Inputs1 {...props} id={this.state.id} user={this.state.username} />}
             />
             <Route
               exact
               path="/Inputs2"
-              render={props => <Inputs2 {...props} id={id} user={username} />}
+    render={props => <Inputs2 {...props} id={this.props.user.id} user={this.props.user.username} />}
             />
             <Route
               exact
               path="/Inputs3"
-              render={props => <Inputs3 {...props} id={id} user={username} />}
+    render={props => <Inputs3 {...props} id={this.props.user.id} user={this.props.user.username} />}
             />
             <Route
               exact
               path="/TrackIt"
-              render={props => <TrackIt {...props} id={id} user={username} />}
+    render={props => <TrackIt {...props} id={this.props.user.id} user={this.props.user.username} />}
             />
             <Route
               exact
@@ -74,18 +79,16 @@ class App extends Component {
               render={props => (
                 <Login
                   {...props}
-                  // handleLogin={this.handleLogin}
                   loggedIn={this.props.loggedIn}
                 />
               )}
-            />
+              />
             <Route
               exact
               path="/signup"
               render={props => (
                 <Signup
                   {...props}
-                  // handleLogin={this.handleLogin}
                   loggedIn={this.props.loggedIn}
                 />
               )}
@@ -93,7 +96,7 @@ class App extends Component {
             <Route
               exact
               path="/Progress"
-              render={props => <Progress {...props} id={id} user={username} />}
+  render={props => <Progress {...props} id={this.props.user.id} user={this.props.user.username} />}
             />
           </Switch>
           <Footer />

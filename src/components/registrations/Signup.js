@@ -27,7 +27,7 @@ class Signup extends Component {
     event.preventDefault();
     const { password, passwordConfirmation } = this.state;
     if (password !== passwordConfirmation) {
-      this.props.history.push('/Signup');
+      this.props.history.push('/ShowErrors');
     }
     const user = {
       username: this.state.username,
@@ -52,7 +52,6 @@ class Signup extends Component {
       <div className="container-fluid text-dark bg-light h-100">
         <div className="w-100 ">
           <h1>Sign Up</h1>
-          <p>{this.props.errors}</p>
         </div>
         <form onSubmit={this.handleSubmit}>
           <label className="justify-left w-100 px-5">

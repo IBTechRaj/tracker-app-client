@@ -80,10 +80,13 @@ class Inputs1 extends Component {
     return (
 
       !(this.props.loggedIn) ? (
-
+      // (this.props.errors)?
+      // (this.props.history.push('/ShowErrors')):(
         <div>
-          <h3 className="error"> { this.props.errors } </h3>
-        <Spinner />
+          {/* <h3 className="error text-dark"> {  (this.props.errors)?
+          this.props.history.push('/')  </h3> */}
+          <Spinner />
+
       </div>
       ) : (
       <div className="container-fluid  body-bg  text-dark text-left font-weight-bold  mb-0 px-0">
