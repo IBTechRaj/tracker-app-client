@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { fetchUser } from '../../store/thunks/user';
-import { addFlashMessage} from '../../store/actions/flashMessages'
+import { addFlashMessage } from '../../store/actions/flashMessages';
 
 class Login extends Component {
   constructor(props) {
@@ -24,13 +24,11 @@ class Login extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const loginInfo = this.state;
-    this.props.fetchUser( loginInfo )
-      // .then(
-      // () => {
-   
-      
-      
+    this.props.fetchUser(loginInfo);
+    // .then(
+    // () => {
   }
+
 redirect = () => {
   this.props.history.push('/Inputs1');
 };
@@ -96,8 +94,8 @@ const mapStateToProps = (state) => ({
   errors: state.errors,
 });
 const mapDispatchToProps = (dispatch) => ({
-  fetchUser: ( loginInfo ) => dispatch( fetchUser( loginInfo ) ),
-  addFlashMessage: (msg) => dispatch( addFlashMessage(msg)),
+  fetchUser: (loginInfo) => dispatch(fetchUser(loginInfo)),
+  addFlashMessage: (msg) => dispatch(addFlashMessage(msg)),
 });
 
 Login.propTypes = {

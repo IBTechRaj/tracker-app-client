@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { signUp } from '../../store/thunks/user';
-import { addFlashMessage} from '../../store/actions/flashMessages'
+import { addFlashMessage } from '../../store/actions/flashMessages';
 import '../../styles/style.css';
 
 class Signup extends Component {
@@ -38,13 +38,13 @@ class Signup extends Component {
     };
     this.props.signUp(user).then(
       () => {
-        this.props.addFlashMessage( {
+        this.props.addFlashMessage({
           type: 'success',
-          text: 'You signed up successfully. Welcome!'
-        } )
-        this.redirect()
-      } )
-
+          text: 'You signed up successfully. Welcome!',
+        });
+        this.redirect();
+      },
+    );
   }
 
   redirect = () => {
@@ -118,7 +118,7 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
   signUp: (signinInfo) => dispatch(signUp(signinInfo)),
-  addFlashMessage: (msg) => dispatch( addFlashMessage(msg)),
+  addFlashMessage: (msg) => dispatch(addFlashMessage(msg)),
 });
 
 Signup.propTypes = {
@@ -126,6 +126,7 @@ Signup.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
   errors: PropTypes.array,
+  addFlashMessage: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);

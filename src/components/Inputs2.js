@@ -4,7 +4,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { Link } from 'react-router-dom';
-import { addFlashMessage} from '../store/actions/flashMessages'
+import { addFlashMessage } from '../store/actions/flashMessages';
 import '../styles/home.css';
 
 class Inputs2 extends Component {
@@ -49,12 +49,11 @@ class Inputs2 extends Component {
     })
       .then(response => {
         if (response.status === 201) {
+          this.props.addFlashMessage({
+            type: 'success',
+            text: 'Prof skills data successfully added!',
+          });
 
-           this.props.addFlashMessage( {
-          type: 'success',
-          text: 'Prof skills data successfully added!'
-        } )
-       
           this.setState({
             hoursDone: '',
             hoursTarget: '',
@@ -188,14 +187,15 @@ const mapStateToProps = (state) => ({
 
 
 const mapDispatchToProps = (dispatch) => ({
-  addFlashMessage: (msg) => dispatch( addFlashMessage(msg)),
-} );
+  addFlashMessage: (msg) => dispatch(addFlashMessage(msg)),
+});
 
 Inputs2.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
   id: PropTypes.number,
   username: PropTypes.string,
   user: PropTypes.object,
+  addFlashMessage: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Inputs2);

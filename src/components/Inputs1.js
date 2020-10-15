@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import { addFlashMessage} from '../store/actions/flashMessages'
+import { addFlashMessage } from '../store/actions/flashMessages';
 import '../styles/home.css';
 import Spinner from './Spinner';
 
@@ -53,12 +53,11 @@ class Inputs1 extends Component {
     })
       .then(response => {
         if (response.status === 201) {
-      
-        this.props.addFlashMessage( {
-          type: 'success',
-          text: 'Tech data successfully added!'
-        } )
-       
+          this.props.addFlashMessage({
+            type: 'success',
+            text: 'Tech data successfully added!',
+          });
+
           this.setState({
             hoursDone: '',
             hoursTarget: '',
@@ -92,7 +91,7 @@ class Inputs1 extends Component {
         <div>
           {/* <h3 className="error text-dark"> {  (this.props.errors)?
           this.props.history.push('/')  </h3> */}
-         { console.log('props',this.props.loggedIn,this.props.user.id, this.props.errors )}
+         {/* { console.log('props', this.props.loggedIn, this.props.user.id, this.props.errors)} */}
           <Spinner />
 
       </div>
@@ -195,11 +194,11 @@ const mapStateToProps = (state) => ({
   user: state.user.user,
   loggedIn: state.user.loggedIn,
   errors: state.errors,
-} );
+});
 
 const mapDispatchToProps = (dispatch) => ({
-  addFlashMessage: (msg) => dispatch( addFlashMessage(msg)),
-} );
+  addFlashMessage: (msg) => dispatch(addFlashMessage(msg)),
+});
 
 Inputs1.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
@@ -207,6 +206,7 @@ Inputs1.propTypes = {
   id: PropTypes.number,
   user: PropTypes.object,
   errors: PropTypes.array,
+  addFlashMessage: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Inputs1);

@@ -14,7 +14,7 @@ import ShowErrors from './components/ShowErrors';
 import Login from './components/registrations/Login';
 import Signup from './components/registrations/Signup';
 import { logOut } from './store/actions/user';
-import FlashMessagesList from './components/FlashMessagesList'
+import FlashMessagesList from './components/FlashMessagesList';
 import './App.css';
 
 class App extends Component {

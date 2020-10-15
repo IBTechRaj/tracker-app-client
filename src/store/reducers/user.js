@@ -6,8 +6,8 @@ const initialState = {
   user: {},
 };
 
-export default ( state = initialState, action ) => {
-  console.log('action,setuser', action, action.setUser)
+export default (state = initialState, action) => {
+  // console.log('action,setuser', action, action.setUser);
   if (action.type === SET_USER) {
     return action.setUser;
   }
