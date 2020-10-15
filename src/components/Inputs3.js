@@ -4,6 +4,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { Link } from 'react-router-dom';
+import { addFlashMessage} from '../store/actions/flashMessages'
 import '../styles/home.css';
 
 class Inputs3 extends Component {
@@ -48,7 +49,13 @@ class Inputs3 extends Component {
       headers: { Authorization: `Bearer ${jwt}` },
     })
       .then(response => {
-        if (response.status === 201) {
+        if ( response.status === 201 ) {
+          
+           this.props.addFlashMessage( {
+          type: 'success',
+          text: 'Coding challenges data successfully added!'
+        } )
+       
           this.setState({
             hoursDone: '',
             hoursTarget: '',
@@ -141,7 +148,7 @@ class Inputs3 extends Component {
             style={{
               backgroundColor: '#97e494',
               height: '5em',
-              marginLeft: '8em',
+              marginLeft: '10%',
               marginBottom: '2em',
             }}
           >
@@ -154,7 +161,7 @@ class Inputs3 extends Component {
             style={{
               backgroundColor: 'white',
               height: '5em',
-              marginRight: '8em',
+              marginRight: '10%',
               marginBottom: '2em',
             }}
           >
@@ -182,6 +189,10 @@ const mapStateToProps = (state) => ({
   loggedIn: state.user.loggedIn,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  addFlashMessage: (msg) => dispatch( addFlashMessage(msg)),
+} );
+
 Inputs3.propTypes = {
   id: PropTypes.number,
   username: PropTypes.string,
@@ -190,4 +201,4 @@ Inputs3.propTypes = {
   user: PropTypes.object,
 };
 
-export default connect(mapStateToProps, null)(Inputs3);
+export default connect(mapStateToProps, mapDispatchToProps)(Inputs3);

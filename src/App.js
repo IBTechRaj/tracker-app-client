@@ -14,6 +14,7 @@ import ShowErrors from './components/ShowErrors';
 import Login from './components/registrations/Login';
 import Signup from './components/registrations/Signup';
 import { logOut } from './store/actions/user';
+import FlashMessagesList from './components/FlashMessagesList'
 import './App.css';
 
 class App extends Component {
@@ -38,6 +39,7 @@ class App extends Component {
   && <h3 className="error"> { this.state.errorMessage } </h3> }
         <BrowserRouter>
           <Header />
+          <FlashMessagesList />
           <Switch>
             <Route
               exact

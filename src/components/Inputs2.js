@@ -4,6 +4,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { Link } from 'react-router-dom';
+import { addFlashMessage} from '../store/actions/flashMessages'
 import '../styles/home.css';
 
 class Inputs2 extends Component {
@@ -48,6 +49,12 @@ class Inputs2 extends Component {
     })
       .then(response => {
         if (response.status === 201) {
+
+           this.props.addFlashMessage( {
+          type: 'success',
+          text: 'Prof skills data successfully added!'
+        } )
+       
           this.setState({
             hoursDone: '',
             hoursTarget: '',
@@ -133,11 +140,12 @@ class Inputs2 extends Component {
         <br></br>
         <div className="row">
           <div
-            className="col-sm py-3   text-muted item-height"
+            className="col-xs py-3   text-muted item-height"
             style={{
               backgroundColor: '#97e494',
               height: '5em',
-              marginLeft: '8em',
+              width: '40%',
+              marginLeft: '10%',
               marginBottom: '2em',
             }}
           >
@@ -146,11 +154,12 @@ class Inputs2 extends Component {
             </Link>
           </div>
           <div
-            className="col-sm py-3   text-white item-height"
+            className="col-xs py-3   text-white item-height"
             style={{
               backgroundColor: '#97e494',
               height: '5em',
-              marginRight: '8em',
+              width: '40%',
+              marginRight: '10%',
               marginBottom: '2em',
               borderLeft: 'solid white',
             }}
@@ -177,10 +186,16 @@ const mapStateToProps = (state) => ({
   loggedIn: state.user.loggedIn,
 });
 
+
+const mapDispatchToProps = (dispatch) => ({
+  addFlashMessage: (msg) => dispatch( addFlashMessage(msg)),
+} );
+
 Inputs2.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
   id: PropTypes.number,
   username: PropTypes.string,
   user: PropTypes.object,
 };
-export default connect(mapStateToProps, null)(Inputs2);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Inputs2);

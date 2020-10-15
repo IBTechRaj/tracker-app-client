@@ -104,7 +104,7 @@ class Progress extends React.Component {
     let strokeDashoffset = this.circumference - (50 / 100) * this.circumference;
     return (
       <>
-        <div className="container-fluid  body-bg  text-dark text-center font-weight-bold  mb-0 px-0 track-height">
+        <div className="container-fluid  body-bg  text-dark text-center font-weight-bold  mb-0 px-0 progress-height">
           <div className="w-100 text-center body-header text-dark px-0 py-1">
             <h1>Track Progress - {this.props.user.uname}</h1>
           </div>

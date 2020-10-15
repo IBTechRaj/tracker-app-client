@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import { addFlashMessage} from '../store/actions/flashMessages'
 import '../styles/home.css';
 import Spinner from './Spinner';
 
@@ -52,6 +53,12 @@ class Inputs1 extends Component {
     })
       .then(response => {
         if (response.status === 201) {
+      
+        this.props.addFlashMessage( {
+          type: 'success',
+          text: 'Tech data successfully added!'
+        } )
+       
           this.setState({
             hoursDone: '',
             hoursTarget: '',
@@ -62,9 +69,9 @@ class Inputs1 extends Component {
       });
   };
 
-  redirect = () => {
-    this.props.history.push('/Inputs2');
-  };
+  // redirect = () => {
+  //   this.props.history.push('/Inputs2');
+  // };
 
   handleErrors = () => (
     <div>
@@ -85,6 +92,7 @@ class Inputs1 extends Component {
         <div>
           {/* <h3 className="error text-dark"> {  (this.props.errors)?
           this.props.history.push('/')  </h3> */}
+         { console.log('props',this.props.loggedIn,this.props.user.id, this.props.errors )}
           <Spinner />
 
       </div>
@@ -156,7 +164,8 @@ class Inputs1 extends Component {
             style={{
               backgroundColor: 'white',
               height: '5em',
-              marginLeft: '8em',
+              // marginLeft: '8em',
+              marginLeft: '10%',
               marginBottom: '2em',
             }}
           >
@@ -167,7 +176,7 @@ class Inputs1 extends Component {
             style={{
               backgroundColor: '#97e494',
               height: '5em',
-              marginRight: '8em',
+              marginRight: '10%',
               marginBottom: '2em',
             }}
           >
@@ -186,7 +195,11 @@ const mapStateToProps = (state) => ({
   user: state.user.user,
   loggedIn: state.user.loggedIn,
   errors: state.errors,
-});
+} );
+
+const mapDispatchToProps = (dispatch) => ({
+  addFlashMessage: (msg) => dispatch( addFlashMessage(msg)),
+} );
 
 Inputs1.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
@@ -196,4 +209,4 @@ Inputs1.propTypes = {
   errors: PropTypes.array,
 };
 
-export default connect(mapStateToProps, null)(Inputs1);
+export default connect(mapStateToProps, mapDispatchToProps)(Inputs1);

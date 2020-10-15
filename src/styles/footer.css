@@ -3,6 +3,11 @@
   min-height: 17vh;
 }
 
+.footer-width {
+  width: 25%;
+  float: left;
+  }
+
 .ad:hover {
   background-color: #41b5e8;
   opacity: 0.5;

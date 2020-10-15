@@ -9,9 +9,9 @@ import '../styles/home.css';
 
 const Home = () => (
     <div className="container-fluid  header-bg text-white font-weight-bold  mb-0 home-height">
-
+     <br></br>     <br></br>     <br></br>     <br></br>     <br></br>     
       <div className="p-3 mb-2 mb-3 bg-dark text-white">
-        <br></br>
+   
         <Link to="/login" style={{ color: 'white' }}>
           Log In
               </Link>

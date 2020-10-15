@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { signUp } from '../../store/thunks/user';
+import { addFlashMessage} from '../../store/actions/flashMessages'
 import '../../styles/style.css';
 
 class Signup extends Component {
@@ -35,9 +36,15 @@ class Signup extends Component {
       password: this.state.password,
       password_confirmation: this.state.passwordConfirmation,
     };
-    this.props.signUp(user);
+    this.props.signUp(user).then(
+      () => {
+        this.props.addFlashMessage( {
+          type: 'success',
+          text: 'You signed up successfully. Welcome!'
+        } )
+        this.redirect()
+      } )
 
-    this.redirect();
   }
 
   redirect = () => {
@@ -111,6 +118,7 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
   signUp: (signinInfo) => dispatch(signUp(signinInfo)),
+  addFlashMessage: (msg) => dispatch( addFlashMessage(msg)),
 });
 
 Signup.propTypes = {
