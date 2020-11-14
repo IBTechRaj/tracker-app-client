@@ -1,69 +1,58 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Tracker-app (Frontend)
 
-In the project directory, you can run:
+This app keeps track of the progress of a user's technical training programme.  It accepts the data about the modules covered against the set targets and shows the details date-wise and progress is shown using a circular progress bar. This app is frontend that stores and retrieves data from a backend the data is stored in a backend (which is a different repo called 'trackit-server'.
 
-### `yarn start`
+# Technologies - Frontend
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- HTML/CSS
+- React
+- Redux
+- Bootstrap
+- Promises
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+# Technologies - Backend
 
-### `yarn test`
+- Ruby on Rails API
+- JWT authentication
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Setup
 
-### `yarn build`
+To run the project:
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Frontend : Clone the repository: https://github.com/IBTechRaj/tracker-app-client
+Run npm install. It will install all the dependencies required by the project
+Run npm start to start the development server. It will automatically open the page in your default browser.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Backend : Clone the repository: https://github.com/IBTechRaj/trackit-server
+Run 'bundle install'
+Run 'rails server' to start the server.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Live Demo
 
-### `yarn eject`
+You can see live demo [ here ](http://tracking-client.herokuapp.com/)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Screen Shots
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![weather screen shot 1](/images/track1.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![weather screen shot 2](/images/track2.png)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![weather screen shot 3](/images/track3.png)
 
-## Learn More
+![weather screen shot 4](/images/track4.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Contribute
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Feel free to contribute if you want to make it better.
 
-### Code Splitting
+# Author
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+* [Rajasekhar K ](https://ibtechraj.github.io/RajPortfolio/)
+* [Github](https://github.com/IBTechRaj)
+* [Email](krs30018@gmail.com)
+* [LinkedIn](https://www.linkedin.com/in/rajkatakamsetty/)
+* [Twitter](https://twitter.com/IBTechRaj) 
 
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-# tracker-app-client
+# Licence
+This project is [MIT](https://github.com/IBTechRaj/weatherApp/blob/gh-pages/LICENSE) licencsed.
