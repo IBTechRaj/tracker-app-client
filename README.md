@@ -20,13 +20,13 @@ This app keeps track of the progress of a user's technical training programme.  
 
 To run the project:
 
-Frontend : Clone the repository: https://github.com/IBTechRaj/tracker-app-client
-Run npm install. It will install all the dependencies required by the project
-Run npm start to start the development server. It will automatically open the page in your default browser.
-
 Backend : Clone the repository: https://github.com/IBTechRaj/trackit-server
 Run 'bundle install'
 Run 'rails server' to start the server.
+
+Frontend : Clone the repository: https://github.com/IBTechRaj/tracker-app-client
+Run npm install. It will install all the dependencies required by the project
+Run npm start to start the development server. It will automatically open the page in your default browser.
 
 # Live Demo
 
